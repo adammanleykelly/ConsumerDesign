@@ -24,7 +24,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ViewCards" />
         <activity android:name=".AddCards" />
-
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

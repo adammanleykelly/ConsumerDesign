@@ -6,27 +6,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-public class HomeActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    Button vCards;
+    Button button_Login;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_login);
 
-        vCards = (Button) findViewById(R.id.viewCards);
+        button_Login = (Button) findViewById(R.id.viewCards);
 
-        vCards.setOnClickListener(
+        button_Login.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View view)
                     {
-                        ViewCardsActivity1();}
+                        LoginActivity1();}
                 });
-    }
 
-    public void ViewCardsActivity1()
+    }
+    public void LoginActivity1()
     {
-        Intent act1 = new Intent(this,ViewCards.class);
+        Intent act1 = new Intent(this,HomeActivity.class);
         startActivity(act1);
     }
 }
