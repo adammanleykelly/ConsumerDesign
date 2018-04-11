@@ -19,14 +19,11 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(i);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         }, timer);
 
-        // Start home activity
-        //startActivity(new Intent(SplashActivity.this, MainActivity.class));
-        // close splash activity
-       // finish();
     }
 
 }

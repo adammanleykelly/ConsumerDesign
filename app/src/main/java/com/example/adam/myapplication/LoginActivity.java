@@ -28,5 +28,12 @@ public class LoginActivity extends AppCompatActivity {
     {
         Intent act1 = new Intent(this,HomeActivity.class);
         startActivity(act1);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

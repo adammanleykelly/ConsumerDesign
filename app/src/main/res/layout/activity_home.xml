@@ -26,7 +26,7 @@
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="139dp"
         android:layout_marginStart="139dp"
-        android:text="View Cards"
+        android:text="Cards"
         app:layout_constraintBottom_toTopOf="@+id/addCards"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,12 +39,12 @@
         android:layout_marginEnd="147dp"
         android:layout_marginStart="147dp"
         android:text="Account"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="107dp"
