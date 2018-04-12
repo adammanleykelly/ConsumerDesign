@@ -20,7 +20,6 @@
             android:name=".HomeActivity"
             android:label="HomeActivity" />
         <activity android:name=".ViewCards" />
-        <activity android:name=".AddCards" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainSettingsActivity" />
         <activity android:name=".LoginGoogle"></activity>

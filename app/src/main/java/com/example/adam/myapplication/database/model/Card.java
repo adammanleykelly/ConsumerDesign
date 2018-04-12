@@ -8,15 +8,15 @@ package com.example.adam.myapplication.database.model;
  * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018
  **/
 
-public class Note {
-    public static final String TABLE_NAME = "notes";
+public class Card {
+    public static final String TABLE_NAME = "cards";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NOTE = "note";
+    public static final String COLUMN_CARD = "card";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
-    private String note;
+    private String card;
     private String timestamp;
 
 
@@ -24,16 +24,16 @@ public class Note {
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_NOTE + " TEXT,"
+                    + COLUMN_CARD + " TEXT,"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
-    public Note() {
+    public Card() {
     }
 
-    public Note(int id, String note, String timestamp) {
+    public Card(int id, String card, String timestamp) {
         this.id = id;
-        this.note = note;
+        this.card = card;
         this.timestamp = timestamp;
     }
 
@@ -41,12 +41,12 @@ public class Note {
         return id;
     }
 
-    public String getNote() {
-        return note;
+    public String getCard() {
+        return card;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setCard(String card) {
+        this.card = card;
     }
 
     public String getTimestamp() {

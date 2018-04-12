@@ -30,12 +30,12 @@
         android:textSize="@dimen/timestamp" />
 
     <TextView
-        android:id="@+id/note"
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/timestamp"
         android:layout_toRightOf="@id/dot"
-        android:textColor="@color/note_list_text"
-        android:textSize="@dimen/note_list_text" />
+        android:textColor="@color/card_list_text"
+        android:textSize="@dimen/card_list_text" />
 
 </RelativeLayout>
