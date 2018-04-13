@@ -1,4 +1,4 @@
-<!-- Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018-->
+<!-- Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

@@ -1,5 +1,10 @@
 package com.example.adam.myapplication.database;
 
+/**
+ * Created by ravi on 20/02/18.
+ * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
+ **/
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,13 +16,6 @@ import java.util.List;
 
 import com.example.adam.myapplication.database.model.Card;
 
-/**
- * Created by ravi on 15/03/18.
- */
-
-/**
- * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018
- **/
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

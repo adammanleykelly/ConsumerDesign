@@ -1,11 +1,8 @@
 package com.example.adam.myapplication.utils;
 
 /**
- * Created by ravi on 18/01/18.
- */
-
-/**
- * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018
+ * Created by ravi on 20/02/18.
+ * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
 
 import android.content.Context;

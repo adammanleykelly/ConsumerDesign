@@ -1,7 +1,8 @@
 package com.example.adam.myapplication;
 
 /**
- * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018
+ * Created by ravi on 20/02/18.
+ * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,10 +77,8 @@ public class ViewCards extends AppCompatActivity {
         toggleEmptyCards();
 
         /**
-         * On long press on RecyclerView item, open alert dialog
-         * with options to choose
-         * Edit and Delete
-         * */
+         * On long press on RecyclerView item, open alert dialog with options to choose Edit and Delete
+         */
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
                 recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -94,8 +93,7 @@ public class ViewCards extends AppCompatActivity {
     }
 
     /**
-     * Inserting new card in db
-     * and refreshing the list
+     * Inserting new card in db and refreshing the list
      */
     private void createCard(String card) {
         // inserting card in db and getting
