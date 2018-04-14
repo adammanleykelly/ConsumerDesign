@@ -4,6 +4,7 @@ package com.example.adam.myapplication;
  * Created by ravi on 20/02/18.
  * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,6 +18,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -242,6 +246,29 @@ public class ViewCards extends AppCompatActivity {
             noCardsView.setVisibility(View.GONE);
         } else {
             noCardsView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menu_settings:
+               // Easy();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
