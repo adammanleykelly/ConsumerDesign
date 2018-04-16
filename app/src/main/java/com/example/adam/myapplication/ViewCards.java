@@ -266,7 +266,6 @@ public class ViewCards extends AppCompatActivity {
             case R.id.menu_settings:
                // Easy();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

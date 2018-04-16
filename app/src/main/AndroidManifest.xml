@@ -22,7 +22,11 @@
         <activity android:name=".ViewCards" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainSettingsActivity" />
-        <activity android:name=".LoginGoogle"></activity>
+        <activity android:name=".LoginGoogle" />
+        <activity
+            android:name=".LoginEmail"
+            android:label="@string/title_activity_login_email"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

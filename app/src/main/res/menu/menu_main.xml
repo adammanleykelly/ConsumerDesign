@@ -7,14 +7,11 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <!--
-        Here we set the settings item to always be in the overflow menu, by setting
-        support:showAsAction to never, so it is never displayed as an action item on the compatible
-        Action Bar.
-    -->
+         />
+
     <item
         android:id="@+id/menu_settings"
-        android:title="Menu Settings" />
+        android:title="Menu Settings"
+        app:showAsAction="never"/>
 
 </menu>
