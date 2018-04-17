@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="150dp"
-        android:text="Digital Wallet"
-        android:textSize="45sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="384dp"
+        android:layout_height="154dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="82dp"
+        android:cropToPadding="true"
+        android:src="@drawable/ewallet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.adam.myapplication.MainActivity">
+    tools:context="com.example.adam.myapplication.SplashActivity">
 
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="150dp"
-        android:text="Digital Wallet"
-        android:textSize="45sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="384dp"
+        android:layout_height="154dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="82dp"
+        android:cropToPadding="true"
+        android:src="@drawable/ewallet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,9 +27,8 @@
         android:layout_marginBottom="242dp"
         android:layout_marginEnd="182dp"
         android:layout_marginStart="181dp"
-        android:layout_marginTop="158dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

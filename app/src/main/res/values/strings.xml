@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DWallet</string>
+    <string name="app_name">eWallet</string>
     <string name="title_activity_splash">SplashActivity</string>
     <!-- Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018-->
     <string name="action_settings">Settings</string>

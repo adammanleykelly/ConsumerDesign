@@ -5,17 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.*;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button vCards;
+    private FirebaseAuth mAuth;
+    Button vCards, signOut;
     Button sButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        mAuth = FirebaseAuth.getInstance();
         vCards = (Button) findViewById(R.id.viewCards);
         sButton = (Button) findViewById(R.id.buttonSettings);
+        signOut = (Button) findViewById(R.id.buttonSignOut);
 
         vCards.setOnClickListener(
                 new View.OnClickListener()
@@ -30,6 +36,13 @@ public class HomeActivity extends AppCompatActivity {
                     public void onClick(View view)
                     {
                         ViewSettingsActivity1();}
+                });
+        signOut.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        signOut();}
                 });
     }
 
@@ -46,6 +59,15 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(act1);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
+
+    private void signOut() {
+        mAuth.signOut();
+        FirebaseUser currentUser = null;
+        Intent act1 = new Intent(this,LoginActivity.class);
+        startActivity(act1);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
 
     @Override
     public void onBackPressed() {

@@ -20,15 +20,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="150dp"
-        android:text="Digital Wallet"
-        android:textSize="45sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="384dp"
+        android:layout_height="154dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="82dp"
+        android:cropToPadding="true"
+        android:src="@drawable/ewallet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,10 +63,23 @@
         android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="107dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="146dp"
         android:layout_marginStart="147dp"
         android:text="Settings"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginStart="161dp"
+        android:text="Sign Out"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
