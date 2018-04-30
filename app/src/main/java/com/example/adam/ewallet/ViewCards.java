@@ -1,4 +1,4 @@
-package com.example.adam.myapplication;
+package com.example.adam.ewallet;
 
 /**
  * Created by ravi on 20/02/18.
@@ -29,12 +29,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.adam.myapplication.view.CardsAdapter;
-import com.example.adam.myapplication.database.model.Card;
+import com.example.adam.ewallet.view.CardsAdapter;
+import com.example.adam.ewallet.database.model.Card;
 
-import com.example.adam.myapplication.database.DatabaseHelper;
-import com.example.adam.myapplication.utils.MyDividerItemDecoration;
-import com.example.adam.myapplication.utils.RecyclerTouchListener;
+import com.example.adam.ewallet.database.DatabaseHelper;
+import com.example.adam.ewallet.utils.MyDividerItemDecoration;
+import com.example.adam.ewallet.utils.RecyclerTouchListener;
 
 
 public class ViewCards extends AppCompatActivity {

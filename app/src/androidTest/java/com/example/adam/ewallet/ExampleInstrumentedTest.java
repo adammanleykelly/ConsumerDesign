@@ -1,4 +1,4 @@
-package com.example.adam.myapplication;
+package com.example.adam.ewallet;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

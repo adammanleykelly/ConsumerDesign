@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainSettingsActivity">
+    tools:context="com.example.adam.ewallet.ScanCard">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout3"
+        android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -18,32 +18,32 @@
             android:layout_height="55dp"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Settings" />
+            app:title="Scan Card" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:id="@+id/scanButton"
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="294dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="57dp"
-        android:text="Scan Card"
+        android:layout_marginEnd="182dp"
+        android:layout_marginStart="181dp"
+        android:layout_marginTop="139dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
-    <Button
-        android:id="@+id/emulateButton"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="268dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="17dp"
-        android:text="Emulate Card"
+        android:layout_marginBottom="219dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginStart="125dp"
+        android:text="Hold card close to back of phone."
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scanButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

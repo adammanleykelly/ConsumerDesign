@@ -1,4 +1,4 @@
-package com.example.adam.myapplication;
+package com.example.adam.ewallet;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.adam.myapplication.database.model;
+package com.example.adam.ewallet.database.model;
 
 /**
  * Created by ravi on 20/02/18.

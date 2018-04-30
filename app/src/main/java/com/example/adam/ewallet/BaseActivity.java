@@ -1,4 +1,4 @@
-package com.example.adam.myapplication;
+package com.example.adam.ewallet;
 
 import android.app.ProgressDialog;
 import android.content.Context;

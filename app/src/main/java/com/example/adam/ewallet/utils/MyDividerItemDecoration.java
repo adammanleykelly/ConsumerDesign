@@ -1,4 +1,4 @@
-package com.example.adam.myapplication.utils;
+package com.example.adam.ewallet.utils;
 
 /**
  * Created by ravi on 20/02/18.

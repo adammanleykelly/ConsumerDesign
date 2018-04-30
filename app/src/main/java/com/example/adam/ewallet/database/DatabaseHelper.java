@@ -1,4 +1,4 @@
-package com.example.adam.myapplication.database;
+package com.example.adam.ewallet.database;
 
 /**
  * Created by ravi on 20/02/18.
@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.adam.myapplication.database.model.Card;
+import com.example.adam.ewallet.database.model.Card;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
