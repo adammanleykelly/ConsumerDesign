@@ -9,4 +9,5 @@
     <string name="lbl_edit_card_title">Edit Card</string>
     <string name="hint_enter_card">Enter your Card!</string>
     <string name="title_activity_login_email">LoginEmail</string>
+    <string name="title_activity_write_card">WriteCard</string>
 </resources>

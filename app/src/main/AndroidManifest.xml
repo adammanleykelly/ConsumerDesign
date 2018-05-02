@@ -2,8 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adam.ewallet">
 
+    <uses-permission android:name="android.permission.NFC" />
+
+    <!-- Tells device NFC is required for the application -->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+    <!-- Tells device Host Card Emulation]# is required for the application -->
+    <uses-feature
+        android:name="android.hardware.nfc.hce"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
+        android:screenOrientation="portrait"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,6 +27,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- NFC Tech Filter -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
         </activity>
         <activity
             android:name=".HomeActivity"
@@ -28,7 +48,11 @@
             android:label="@string/title_activity_login_email"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".EmulateCard" />
-        <activity android:name=".ScanCard"></activity>
+        <activity android:name=".ScanCard" />
+        <activity
+            android:name=".WriteCard"
+            android:label="@string/title_activity_write_card"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

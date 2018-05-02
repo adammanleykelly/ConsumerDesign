@@ -2,14 +2,13 @@ package com.example.adam.ewallet;
 
 /**
  * Created by ravi on 20/02/18.
- * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
+ * 'Card' Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
-import android.support.v4.view.MenuItemCompat;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.DialogInterface;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,9 +17,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +37,6 @@ public class ViewCards extends AppCompatActivity {
 
     private CardsAdapter mAdapter;
     private List<Card> cardsList = new ArrayList<>();
-    private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
     private TextView noCardsView;
 
@@ -55,7 +50,6 @@ public class ViewCards extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        coordinatorLayout = findViewById(R.id.coordinator_layout);
         recyclerView = findViewById(R.id.recycler_view);
         noCardsView = findViewById(R.id.empty_cards_view);
 
@@ -67,7 +61,8 @@ public class ViewCards extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCardDialog(false, null, -1);
+                ScanCard();
+                //showCardDialog(false, null, -1);
             }
         });
 
@@ -86,7 +81,8 @@ public class ViewCards extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
                 recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
-            public void onClick(View view, final int position) {
+            public void onClick(View view, final int position)
+            {
             }
 
             @Override
@@ -96,27 +92,6 @@ public class ViewCards extends AppCompatActivity {
         }));
     }
 
-    /**
-     * Inserting new card in db and refreshing the list
-     */
-    private void createCard(String card) {
-        // inserting card in db and getting
-        // newly inserted card id
-        long id = db.insertCard(card);
-
-        // get the newly inserted card from db
-        Card n = db.getCard(id);
-
-        if (n != null) {
-            // adding new card to array list at 0 position
-            cardsList.add(0, n);
-
-            // refreshing the list
-            mAdapter.notifyDataSetChanged();
-
-            toggleEmptyCards();
-        }
-    }
 
     /**
      * Updating card in db and updating
@@ -182,7 +157,7 @@ public class ViewCards extends AppCompatActivity {
      * when shouldUpdate=true, it automatically displays old card and changes the
      * button text to UPDATE
      */
-    private void showCardDialog(final boolean shouldUpdate, final Card card, final int position) {
+    public void showCardDialog(final boolean shouldUpdate, final Card card, final int position) {
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
         View view = layoutInflaterAndroid.inflate(R.layout.card_dialog, null);
 
@@ -230,7 +205,7 @@ public class ViewCards extends AppCompatActivity {
                     updateCard(inputCard.getText().toString(), position);
                 } else {
                     // create new card
-                    createCard(inputCard.getText().toString());
+                   // createCard(inputCard.getText().toString());
                 }
             }
         });
@@ -249,27 +224,14 @@ public class ViewCards extends AppCompatActivity {
         }
     }
 
-    //Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+
+    public void ScanCard()
     {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
+        Intent act1 = new Intent(this,ScanCard.class);
+        startActivity(act1);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.menu_settings:
-               // Easy();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public void onBackPressed() {
