@@ -11,6 +11,8 @@ public class EmulateCard extends AppCompatActivity {
         setContentView(R.layout.activity_emulate_card);
     }
 
+    //To do get card method
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

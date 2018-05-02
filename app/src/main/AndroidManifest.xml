@@ -38,7 +38,8 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="HomeActivity" />
+            android:label="HomeActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ViewCards" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainSettingsActivity" />

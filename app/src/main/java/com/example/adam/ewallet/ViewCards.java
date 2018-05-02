@@ -83,6 +83,7 @@ public class ViewCards extends AppCompatActivity {
             @Override
             public void onClick(View view, final int position)
             {
+                emulateCard();
             }
 
             @Override
@@ -224,10 +225,16 @@ public class ViewCards extends AppCompatActivity {
         }
     }
 
-
     public void ScanCard()
     {
         Intent act1 = new Intent(this,ScanCard.class);
+        startActivity(act1);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public void emulateCard()
+    {
+        Intent act1 = new Intent(this,EmulateCard.class);
         startActivity(act1);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
@@ -236,6 +243,8 @@ public class ViewCards extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent act1 = new Intent(this,HomeActivity.class);
+        startActivity(act1);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }
