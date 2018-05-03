@@ -10,10 +10,12 @@ public class Card {
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CARD = "card";
+    public static final String COLUMN_CARDDATA = "cardData";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
     private String card;
+    private String cardData;
     private String timestamp;
 
 
@@ -22,15 +24,17 @@ public class Card {
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_CARD + " TEXT,"
+                    + COLUMN_CARDDATA + "TEXTs"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
     public Card() {
     }
 
-    public Card(int id, String card, String timestamp) {
+    public Card(int id, String card, String cardData, String timestamp) {
         this.id = id;
         this.card = card;
+        this.cardData = cardData;
         this.timestamp = timestamp;
     }
 
@@ -44,6 +48,14 @@ public class Card {
 
     public void setCard(String card) {
         this.card = card;
+    }
+
+    public String getCardData() {
+        return cardData;
+    }
+
+    public void setCardData(String cardData) {
+        this.cardData = cardData;
     }
 
     public String getTimestamp() {

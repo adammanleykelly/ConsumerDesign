@@ -1,3 +1,4 @@
+
 package com.example.adam.ewallet.database;
 
 /**
@@ -5,6 +6,7 @@ package com.example.adam.ewallet.database;
  * Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,7 +22,7 @@ import com.example.adam.ewallet.database.model.Card;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 11;
 
     // Database Name
     private static final String DATABASE_NAME = "cards_db";
@@ -42,13 +44,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + Card.TABLE_NAME);
 
-        // Create tables again
+        db.execSQL("DROP TABLE IF EXISTS " + Card.TABLE_NAME);
         onCreate(db);
+        if (newVersion > oldVersion) {
+            db.execSQL("ALTER TABLE " + Card.TABLE_NAME + " ADD COLUMN cardData INTEGER DEFAULT 0");
+            db.execSQL("ALTER TABLE " + Card.TABLE_NAME + " ADD COLUMN timestamp INTEGER DEFAULT 0");}
+
+        // If you need to add a new column
+
+        //Create tables again
+
     }
 
-    public long insertCard(String card) {
+    public long insertCard(String card, String cardData) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -56,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // `id` and `timestamp` will be inserted automatically.
         // no need to add them
         values.put(Card.COLUMN_CARD, card);
+        values.put(Card.COLUMN_CARDDATA, cardData);
 
         // insert row
         long id = db.insert(Card.TABLE_NAME, null, values);
@@ -72,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Card.TABLE_NAME,
-                new String[]{Card.COLUMN_ID, Card.COLUMN_CARD, Card.COLUMN_TIMESTAMP},
+                new String[]{Card.COLUMN_ID, Card.COLUMN_CARD, Card.COLUMN_CARDDATA, Card.COLUMN_TIMESTAMP},
                 Card.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
@@ -83,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Card card = new Card(
                 cursor.getInt(cursor.getColumnIndex(Card.COLUMN_ID)),
                 cursor.getString(cursor.getColumnIndex(Card.COLUMN_CARD)),
+                cursor.getString(cursor.getColumnIndex(Card.COLUMN_CARDDATA)),
                 cursor.getString(cursor.getColumnIndex(Card.COLUMN_TIMESTAMP)));
 
         // close the db connection
@@ -91,15 +102,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return card;
     }
 
+    @SuppressLint("Recycle")
     public List<Card> getAllCards() {
         List<Card> cards = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + Card.TABLE_NAME + " ORDER BY " +
-                Card.COLUMN_TIMESTAMP + " DESC";
+        String selectQuery = "SELECT  * FROM " + Card.TABLE_NAME ;
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor= db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -107,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Card card = new Card();
                 card.setId(cursor.getInt(cursor.getColumnIndex(Card.COLUMN_ID)));
                 card.setCard(cursor.getString(cursor.getColumnIndex(Card.COLUMN_CARD)));
+                card.setCardData(cursor.getString(cursor.getColumnIndex(Card.COLUMN_CARDDATA)));
                 card.setTimestamp(cursor.getString(cursor.getColumnIndex(Card.COLUMN_TIMESTAMP)));
 
                 cards.add(card);

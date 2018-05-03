@@ -4,6 +4,7 @@ package com.example.adam.ewallet;
 */
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,9 +43,10 @@ public class ScanCard extends AppCompatActivity
     boolean writeMode;
     Tag myTag;
     Context context;
+    String cardData = " ";
+    public static final String MIME_TEXT_PLAIN = "text/plain";
 
-    TextView tvNFCContent;
-    TextView message;
+    TextView tvNFCContent, message, nfcStatus;
     Button button, saveButton;
 
     @Override
@@ -59,6 +61,7 @@ public class ScanCard extends AppCompatActivity
         context = this;
         tvNFCContent = findViewById(R.id.carddata1);
         message = findViewById(R.id.edit_message);
+        nfcStatus = findViewById(R.id.nfcStatus);
         saveButton= (Button) findViewById(R.id.saveButton);
         //saveButton.setVisibility(View.GONE);
 
@@ -75,6 +78,16 @@ public class ScanCard extends AppCompatActivity
             // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
+        }
+
+        //Status update if NFC is enabled
+        if (!nfcAdapter.isEnabled())
+        {
+            nfcStatus.setText("NFC is disabled.");
+        }
+        else
+        {
+            nfcStatus.setVisibility(View.INVISIBLE);
         }
         readFromIntent(getIntent());
 
@@ -106,7 +119,7 @@ public class ScanCard extends AppCompatActivity
     private void buildTagViews(NdefMessage[] msgs) {
         if (msgs == null || msgs.length == 0) return;
 
-        String text = "";
+        //String text = "";
 //        String tagId = new String(msgs[0].getRecords()[0].getType());
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
@@ -115,13 +128,71 @@ public class ScanCard extends AppCompatActivity
 
         try {
             // Get the Text
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
+            cardData = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
         } catch (UnsupportedEncodingException e) {
             Log.e("UnsupportedEncoding", e.toString());
         }
 
-        tvNFCContent.setText("NFC Content: " + text);
+        tvNFCContent.setText("Tag Content: " + cardData);
        // saveButton.setVisibility(View.VISIBLE);
+    }
+
+    /******************************************************************************
+     **********************************Stop NFC Picker*****************************
+     ******************************************************************************/
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        /**
+         * It's important, that the activity is in the foreground (resumed). Otherwise
+         * an IllegalStateException is thrown.
+         */
+        setupForegroundDispatch(this, nfcAdapter);
+    }
+
+    @Override
+    protected void onPause() {
+        /**
+         * Call this before onPause, otherwise an IllegalArgumentException is thrown as well.
+         */
+        stopForegroundDispatch(this, nfcAdapter);
+
+        super.onPause();
+    }
+
+    private void handleIntent(Intent intent) {
+        // TODO: handle Intent
+    }
+
+    /**
+     * @param activity The corresponding {@link Activity} requesting the foreground dispatch.
+     * @param adapter The {@link NfcAdapter} used for the foreground dispatch.
+     */
+    public static void setupForegroundDispatch(final Activity activity, NfcAdapter adapter) {
+        final Intent intent = new Intent(activity.getApplicationContext(), activity.getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        final PendingIntent pendingIntent = PendingIntent.getActivity(activity.getApplicationContext(), 0, intent, 0);
+
+        IntentFilter[] filters = new IntentFilter[1];
+        String[][] techList = new String[][]{};
+
+        // Notice that this is the same filter as in our manifest.
+        filters[0] = new IntentFilter();
+        filters[0].addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        filters[0].addCategory(Intent.CATEGORY_DEFAULT);
+        try {
+            filters[0].addDataType(MIME_TEXT_PLAIN);
+        } catch (IntentFilter.MalformedMimeTypeException e) {
+            throw new RuntimeException("Check your mime type.");
+        }
+
+        adapter.enableForegroundDispatch(activity, pendingIntent, filters, techList);
+    }
+
+    public static void stopForegroundDispatch(final Activity activity, NfcAdapter adapter) {
+        adapter.disableForegroundDispatch(activity);
     }
 
      /******************************************************************************
@@ -131,10 +202,10 @@ public class ScanCard extends AppCompatActivity
     /**
      * Inserting new card in db and refreshing the list
      */
-    private void createCard(String card) {
+    private void createCard(String card, String cardData) {
         // inserting card in db and getting
         // newly inserted card id
-        long id = db.insertCard(card);
+        long id = db.insertCard(card, cardData);
 
         // get the newly inserted card from db
         Card n = db.getCard(id);
@@ -145,7 +216,6 @@ public class ScanCard extends AppCompatActivity
 
         }
     }
-
 
 
     /**
@@ -165,16 +235,15 @@ public class ScanCard extends AppCompatActivity
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
         dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_card_title) : getString(R.string.lbl_edit_card_title));
 
-        if (shouldUpdate && card != null) {
-            inputCard.setText(card.getCard());
-        }
+
         alertDialogBuilderUserInput
                 .setCancelable(false)
-                .setPositiveButton(shouldUpdate ? "update" : "save", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogBox, int id) {
+                .setPositiveButton("save",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogBox, int id) {
 
-                    }
-                })
+                            }
+                        })
                 .setNegativeButton("cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogBox, int id) {
@@ -196,15 +265,11 @@ public class ScanCard extends AppCompatActivity
                     alertDialog.dismiss();
                 }
 
-                // check if user updating card
-                if (shouldUpdate && card != null) {
-                    // update card by it's id
-                    //updateCard(inputCard.getText().toString(), position);
-                } else {
+
                     // create new card
-                    createCard(inputCard.getText().toString());
+                    createCard(inputCard.getText().toString(), cardData);
                     ViewCards();
-                }
+
             }
         });
     }

@@ -40,11 +40,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="86dp"
         android:layout_marginStart="85dp"
         android:text="Hold tag/card close to back of phone."
-        app:layout_constraintBottom_toTopOf="@+id/carddata1"
+        app:layout_constraintBottom_toTopOf="@+id/nfcStatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,6 +70,18 @@
         android:text="Save"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/nfcStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginStart="176dp"
+        android:text="nfcStatus"
+        app:layout_constraintBottom_toTopOf="@+id/carddata1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
