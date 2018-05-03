@@ -8,7 +8,7 @@ import android.widget.*;
 
 public class MainSettingsActivity extends AppCompatActivity {
 
-    Button Scan, Emulate;
+    Button Scan, Emulate, write;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +16,7 @@ public class MainSettingsActivity extends AppCompatActivity {
 
         Scan = (Button) findViewById(R.id.scanButton);
         Emulate = (Button) findViewById(R.id.emulateButton);
+        write = (Button) findViewById(R.id.writeButton);
 
         Scan.setOnClickListener(
                 new View.OnClickListener()
@@ -31,6 +32,13 @@ public class MainSettingsActivity extends AppCompatActivity {
                     {
                         EmulateCards();}
                 });
+        write.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        WriteCards();}
+                });
     }
 
     public void ScanCards()
@@ -43,6 +51,13 @@ public class MainSettingsActivity extends AppCompatActivity {
     public void EmulateCards()
     {
         Intent act1 = new Intent(this,EmulateCard.class);
+        startActivity(act1);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public void WriteCards()
+    {
+        Intent act1 = new Intent(this,WriteCard.class);
         startActivity(act1);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
