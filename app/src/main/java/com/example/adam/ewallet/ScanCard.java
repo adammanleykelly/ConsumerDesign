@@ -1,6 +1,7 @@
 package com.example.adam.ewallet;
-/* Read write Code adjusted from: http://www.codexpedia.com/android/android-nfc-read-and-write-example/
-* 'Card' Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
+/*
+*Read write Code adjusted from: https://github.com/codexpedia/android_nfc_read_write
+*'Card' Code taken and modified from https://github.com/ravi8x/AndroidSQLite
 */
 
 
@@ -57,6 +58,7 @@ public class ScanCard extends AppCompatActivity
         db = new DatabaseHelper(this);
         cardsList.addAll(db.getAllCards());
         context = this;
+
         tvNFCContent = findViewById(R.id.carddata1);
         message = findViewById(R.id.edit_message);
         nfcStatus = findViewById(R.id.nfcStatus);

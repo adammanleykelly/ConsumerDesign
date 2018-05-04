@@ -1,8 +1,11 @@
 package com.example.adam.ewallet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.*;
 
@@ -18,11 +21,13 @@ import java.util.List;
 public class EmulateCard extends AppCompatActivity {
 
     private CardsAdapter mAdapter;
-    private List<Card> cardsList = new ArrayList<>();
+    private List<Card> cardsList = new ArrayList<>();;
     private DatabaseHelper db;
+    Context context;
 
+    int position;// =0;
     NfcAdapter nfcAdapter;
-    TextView nfcStatus, cardName;
+    TextView nfcStatus, cardName, cardData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,23 @@ public class EmulateCard extends AppCompatActivity {
 
         nfcStatus = (TextView) findViewById(R.id.nfcStatus);
         cardName = (TextView) findViewById(R.id.cardName);
+        cardData = (TextView) findViewById(R.id.cardData);
+
+        //this.context = context;
+        //this.cardsList = cardsList;
+
+        db = new DatabaseHelper(this);
+        cardsList.addAll(db.getAllCards());
+        context = this;
+
+        SharedPreferences sp = getSharedPreferences("Position", EmulateCard.MODE_PRIVATE);
+        position = sp.getInt("positionPref", 0);
+        System.out.println("Emulate oncreate: " +position);
+        getCard(position);
+
+
+        //    String str = Integer.toString(position);
+          //  cardName.setText(str);}
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
@@ -51,6 +73,14 @@ public class EmulateCard extends AppCompatActivity {
     }
 
     //To do get card method
+    public void getCard(int position)
+    {
+        System.out.println("getCard position value" + position);
+        Card card = cardsList.get(position);
+        cardName.setText(card.getCard());
+        cardData.setText(card.getCardData());
+        System.out.println(card.getCard());
+    }
 
     @Override
     public void onBackPressed() {

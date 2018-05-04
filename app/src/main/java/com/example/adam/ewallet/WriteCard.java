@@ -1,4 +1,8 @@
 package com.example.adam.ewallet;
+/*
+ *Read write Code adjusted from: https://github.com/codexpedia/android_nfc_read_write
+ *'Card' Code taken and modified from https://github.com/ravi8x/AndroidSQLite
+ */
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

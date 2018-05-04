@@ -8,7 +8,7 @@ import android.content.Intent;
 
 public class SplashActivity extends AppCompatActivity {
 
-    int timer = 3000;
+    int timer = 500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -5,6 +5,7 @@ package com.example.adam.ewallet;
  * 'Card' Code taken and modified from https://github.com/ravi8x/AndroidSQLite on the 12/04/2018 by Adam Manley Kelly
  **/
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -41,6 +42,7 @@ public class ViewCards extends AppCompatActivity {
     private TextView noCardsView;
 
     private DatabaseHelper db;
+    TextView testView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class ViewCards extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         noCardsView = findViewById(R.id.empty_cards_view);
+        testView = findViewById(R.id.testView);
 
         db = new DatabaseHelper(this);
 
@@ -83,7 +86,10 @@ public class ViewCards extends AppCompatActivity {
             @Override
             public void onClick(View view, final int position)
             {
-                emulateCard();
+                emulateCard(position);
+                System.out.println(position);
+              // String str = Integer.toString(position);
+               // testView.setText(str);
             }
 
             @Override
@@ -232,8 +238,14 @@ public class ViewCards extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public void emulateCard()
+    public void emulateCard(int position)
     {
+        //int pos = 0;
+        SharedPreferences sp = getSharedPreferences("Position", ViewCards.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("positionPref", position);
+        editor.commit();
+
         Intent act1 = new Intent(this,EmulateCard.class);
         startActivity(act1);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
