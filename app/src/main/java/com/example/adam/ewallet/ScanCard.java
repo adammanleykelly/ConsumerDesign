@@ -56,14 +56,12 @@ public class ScanCard extends AppCompatActivity
 
         db = new DatabaseHelper(this);
         cardsList.addAll(db.getAllCards());
-
-
         context = this;
         tvNFCContent = findViewById(R.id.carddata1);
         message = findViewById(R.id.edit_message);
         nfcStatus = findViewById(R.id.nfcStatus);
         saveButton= (Button) findViewById(R.id.saveButton);
-        //saveButton.setVisibility(View.GONE);
+        saveButton.setVisibility(View.GONE);
 
         saveButton.setOnClickListener(
                 new View.OnClickListener()
@@ -134,7 +132,7 @@ public class ScanCard extends AppCompatActivity
         }
 
         tvNFCContent.setText("Tag Content: " + cardData);
-       // saveButton.setVisibility(View.VISIBLE);
+        saveButton.setVisibility(View.VISIBLE);
     }
 
     /******************************************************************************

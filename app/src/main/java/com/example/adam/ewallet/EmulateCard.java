@@ -1,16 +1,28 @@
 package com.example.adam.ewallet;
-//Dummy activity for demonstration purposes
+
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import com.example.adam.ewallet.view.CardsAdapter;
+import com.example.adam.ewallet.database.model.Card;
+
+import com.example.adam.ewallet.database.DatabaseHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class EmulateCard extends AppCompatActivity {
 
+    private CardsAdapter mAdapter;
+    private List<Card> cardsList = new ArrayList<>();
+    private DatabaseHelper db;
+
     NfcAdapter nfcAdapter;
-    TextView nfcStatus;
+    TextView nfcStatus, cardName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +30,7 @@ public class EmulateCard extends AppCompatActivity {
         setContentView(R.layout.activity_emulate_card);
 
         nfcStatus = (TextView) findViewById(R.id.nfcStatus);
+        cardName = (TextView) findViewById(R.id.cardName);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
