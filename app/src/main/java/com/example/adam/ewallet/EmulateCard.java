@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.*;
 
@@ -38,9 +37,6 @@ public class EmulateCard extends AppCompatActivity {
         cardName = (TextView) findViewById(R.id.cardName);
         cardData = (TextView) findViewById(R.id.cardData);
 
-        //this.context = context;
-        //this.cardsList = cardsList;
-
         db = new DatabaseHelper(this);
         cardsList.addAll(db.getAllCards());
         context = this;
@@ -49,10 +45,6 @@ public class EmulateCard extends AppCompatActivity {
         position = sp.getInt("positionPref", 0);
         System.out.println("Emulate oncreate: " +position);
         getCard(position);
-
-
-        //    String str = Integer.toString(position);
-          //  cardName.setText(str);}
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {

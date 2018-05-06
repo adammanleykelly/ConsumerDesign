@@ -7,7 +7,6 @@ package com.example.adam.ewallet.database.model;
 
 public class Card {
     public static final String TABLE_NAME = "cards";
-
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CARD = "card";
     public static final String COLUMN_CARDDATA = "cardData";
@@ -42,6 +41,9 @@ public class Card {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getCard() {
         return card;
     }
@@ -60,10 +62,6 @@ public class Card {
 
     public String getTimestamp() {
         return timestamp;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setTimestamp(String timestamp) {
