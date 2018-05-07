@@ -15,6 +15,7 @@ import com.example.adam.ewallet.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.content.Intent;
 
 
 public class EmulateCard extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class EmulateCard extends AppCompatActivity {
     int position;// =0;
     NfcAdapter nfcAdapter;
     TextView nfcStatus, cardName, cardData;
+    Button emulate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,21 @@ public class EmulateCard extends AppCompatActivity {
         {
             nfcStatus.setVisibility(View.INVISIBLE);
         }
+
+        emulate = (Button) findViewById(R.id.emulateTest);
+        emulate.setVisibility(View.INVISIBLE);
+        emulate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TextView getNdefString = (TextView) findViewById(R.id.cardData);
+                String test = getNdefString.getText().toString();
+
+                Intent intent = new Intent(view.getContext(), myHostApduService.class);
+                intent.putExtra("ndefMessage", test);
+                startService(intent);
+            }
+        });
     }
 
     //To do get card method

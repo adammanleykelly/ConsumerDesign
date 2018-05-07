@@ -63,7 +63,7 @@ public class ScanCard extends AppCompatActivity
         message = findViewById(R.id.edit_message);
         nfcStatus = findViewById(R.id.nfcStatus);
         saveButton= (Button) findViewById(R.id.saveButton);
-        saveButton.setVisibility(View.GONE);
+        saveButton.setVisibility(View.INVISIBLE);
 
         saveButton.setOnClickListener(
                 new View.OnClickListener()
@@ -74,8 +74,8 @@ public class ScanCard extends AppCompatActivity
                 });
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (nfcAdapter == null) {
-            // Stop here, we definitely need NFC
+        if (nfcAdapter == null)
+        {
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
         }
