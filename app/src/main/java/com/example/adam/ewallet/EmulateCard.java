@@ -2,6 +2,7 @@ package com.example.adam.ewallet;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class EmulateCard extends AppCompatActivity {
     NfcAdapter nfcAdapter;
     TextView nfcStatus, cardName, cardData;
     Button emulate;
+    ImageView iView1;
+    String cName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,19 @@ public class EmulateCard extends AppCompatActivity {
         nfcStatus = (TextView) findViewById(R.id.nfcStatus);
         cardName = (TextView) findViewById(R.id.cardName);
         cardData = (TextView) findViewById(R.id.cardData);
+        iView1 = (ImageView) findViewById(R.id.imageView2);
+
+        System.out.println(cName);
+
+        if(cName == "StudentCard" || cName == "Student Card" || cName == "Student card")
+        {
+            iView1.setImageResource(R.drawable.studentcard);
+
+        }
+        else if(cName != "StudentCard" || cName != "Student Card" || cName != "Student card")
+        {
+            iView1.setImageResource(R.drawable.rfid);
+        }
 
         db = new DatabaseHelper(this);
         cardsList.addAll(db.getAllCards());
@@ -87,6 +103,20 @@ public class EmulateCard extends AppCompatActivity {
         System.out.println("getCard position value" + position);
         Card card = cardsList.get(position);
         cardName.setText(card.getCard());
+
+        cName = card.getCard();
+
+        if(cName == "StudentCard" || cName == "Student Card" || cName == "Student card")
+        {
+            iView1.setImageResource(R.drawable.studentcard);
+
+        }
+        else if(cName != "StudentCard" || cName != "Student Card" || cName != "Student card")
+        {
+            iView1.setImageResource(R.drawable.rfid);
+        }
+
+
         cardData.setText(card.getCardData());
         System.out.println(card.getCard());
     }
